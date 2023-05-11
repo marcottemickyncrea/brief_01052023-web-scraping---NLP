@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-testarea">
+    {% if commentaire %}
+    <div class="response-IA">
+        <div class="container-response">
+            <div class="guillemet">&#10077</div>
+            <p class="commentaire">{{commentaire}}</p>
+            <div class="guillemet">&#10078</div>
+        </div>
+        <div>
+            <p>{{proba}}</p>
+        </div>
+        {% if like %}
+        <div class="response like"></div>
+        {% else %}
+        <div class="response dislike"></div>
+        {% endif %}
+
+        <a href="/"><button>Tester un autre commentaire</button></a>
+    </div>
+    {% else %}
+    <div class="textarea">
+        <div class="container-form">
+            <form action="" method="POST">
+                <label for="commentaire">
+                    <textarea name="commentaire" id="commentaire"
+                        placeholder="Je suis une IA qui analyse ton commentaire et détermine si c'est un avis positif ou négatif !">
+                    </textarea>
+                </label>
+                <fieldset>
+                    <legend>Ton commentaire est...</legend>
+                    <div>
+                        <input type="radio" id="positif" name="sentiment" value="1">
+                        <label for="postif">positif</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="negatif" name="sentiment" value="0">
+                        <label for="negatif">négatif</label>
+                    </div>
+                </fieldset>
+                <input type="submit" value="Tester mon commentaire" />
+            </form>
+            <div class="flash-message">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="container-avis">
+                <div class="avis like"></div>
+                <div class="avis dislike"></div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

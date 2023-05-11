@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-coms">
+    {% if commentaires %}
+    <div class="container">
+        <div class="container-title">
+            <h2>Les commentaires scrapés</h2>
+            <p>Ici, retrouvez tous les commentaires scrapés pour le film nommé "{{ titre_film }}".</p>
+        </div>
+        <ul>
+            {% for commentaire in commentaires %}
+            <li>
+                <div class="container-com">
+                    <div class="container-pouce">
+                        <div class="avis-pouce">
+                            <p>Avis allociné</p>
+                            {% if commentaire.note > 3.0 %}
+                            <div class="resultat like"></div>
+                            {% else %}
+                            <div class="resultat dislike"></div>
+                            {% endif %}
+                        </div>
+                        <div class="avis-pouce">
+                            <p>Avis IA</p>
+                            {% if commentaire.avis_IA %}
+                            <div class="resultat like"></div>
+                            {% else %}
+                            <div class="resultat dislike"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <p>{{ commentaire.commentaire }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% else %}
+    <div class="container-input">
+        <form action="" method="POST">
+            <label for="numero-film">Le numéro que vous souhaitez scrapper:</label>
+            <input type="number" id="numero-film" name="numero-film" />
+            <input type="submit" value="Valider le film">
+        </form>
+    </div>
+
+    {% endif%}
+</div>
+
+{% endblock %}

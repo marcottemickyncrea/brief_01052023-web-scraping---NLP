@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+  {% if title %}
+  <title>{{ title }} - web_scrapping</title>
+  {% else %}
+  <title>Web_scrapping</title>
+  {% endif %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }} ">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body class="{{like}}">
+  <header>
+    <nav>
+      <ul>
+        <a href="/scrapping"><li>Web Scrapping</li></a>
+        <a href="/com-analysés"><li>Commentaires analysés</li></a>
+      </ul>
+    </nav>
+    <a href="/">
+      <div class="container-logo">
+        <p class="logo-texte">Test mon com</p>
+        <div class="container-pouces">
+          <div class="logo like"></div>
+          <div class="logo dislike"></div>
+        </div>
+      </div>
+    </a>    
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+
+</html>

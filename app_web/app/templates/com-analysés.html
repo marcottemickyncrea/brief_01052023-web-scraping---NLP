@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-coms">
+    <div>
+        <div class="container-title">
+            <h2>Les commentaires testés</h2>
+            <p>Ici, retrouvvez tous les commentaires testés</p>
+        </div>
+
+        <ul>
+            {% for commentaire in commentaires %}
+            <li>
+                <div class="container-com">
+                    <div class="container-date-pouce">
+                        <p>{{ commentaire[1].strftime("%d/%m/%Y, %H:%M:%S") }}</p>
+                        <div class="container-pouce">
+                            <div class="avis-pouce">
+                                <p>Sentiment</p>
+                                {% if commentaire[4] %}
+                                <div class="resultat like"></div>
+                                {% else %}
+                                <div class="resultat dislike"></div>
+                                {% endif %}
+                            </div>
+                            <div class="avis-pouce">
+                                <p>Avis IA</p>
+                                {% if commentaire[3] %}
+                                <div class="resultat like"></div>
+                                {% else %}
+                                <div class="resultat dislike"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <p>{{ commentaire[2] }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
